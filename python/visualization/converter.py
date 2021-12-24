@@ -51,3 +51,4 @@ def converter(gate_list, nqubit):
         else:
             print("Warning: "+ gate_info[0] + " is unsupported yet.")
             print("Please represent the circuit by using supported gates, if you use .draw()")
+    return qiskit_circ
