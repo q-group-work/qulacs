@@ -18,13 +18,17 @@ def get_intermediate_list(circuit):
     gate_list = []
     for i in range(circuit.get_gate_count()):
         gate = circuit.get_gate(i)
-        if len(gate.get_control_index_list())==0:
+        if gate.get_name() in ["X-rotation", "Y-rotation", "Z-rotation"]:
+            gate_list.append([gate.get_name(), gate.get_target_index_list()[0], gate.get_angle()])
+        elif gate.get_name() == "SWAP":
+            gate_list.append([gate.get_name(), gate.get_target_index_list()])
+        elif len(gate.get_control_index_list())==0:
             gate_list.append([gate.get_name(), gate.get_target_index_list()[0]])
         elif len(gate.get_control_index_list())==1:
             gate_list.append([gate.get_name(), [gate.get_target_index_list()[0], gate.get_control_index_list()[0]]])
         else:
-            gate_list.append([gate.get_name(), gate.get_target_index_list()[0]])
-    nqubit = circuit.get_qubit_count()
+            gate_list.append([gate.get_name(), [*gate.get_target_index_list(), *gate.get_control_index_list()]])
+        nqubit = circuit.get_qubit_count()
     return gate_list, nqubit
 
 def get_qiskit_circuit(circuit):
