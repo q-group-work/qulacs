@@ -9,7 +9,7 @@ def get_intermediate_list(circuit):
 
     Returns:
         gate_list : list
-            [[gate name, target index],...]
+            [[gate name, [control_index, target index]], angle]
 
         nqubit : int
             The number of qubit.
@@ -18,7 +18,7 @@ def get_intermediate_list(circuit):
     gate_list = []
     for i in range(circuit.get_gate_count()):
         gate = circuit.get_gate(i)
-        gate_list.append([gate.get_name(), [gate.get_control_index_list(), gate.get_target_index_list()]])
+        gate_list.append([gate.get_name(), [gate.get_control_index_list(), gate.get_target_index_list()], gate.get_angle()])
         # TODO: 多キュービット対応
         # print(gate.get_control_index_list())
     nqubit = circuit.get_qubit_count()
