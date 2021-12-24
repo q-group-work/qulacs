@@ -27,11 +27,11 @@ def convert(gate_list, nqubit):
         elif gate_info[0] == "Sdag":
             qiskit_circ.sdg(gate_info[1])
         # 回転ゲート
-        elif gate_info[0] == "RX":
+        elif gate_info[0] == "X-rotation":
             qiskit_circ.rx(gate_info[2], gate_info[1])
-        elif gate_info[0] == "RY":
+        elif gate_info[0] == "Y-rotation":
             qiskit_circ.ry(gate_info[2], gate_info[1])
-        elif gate_info[0] == "RZ":
+        elif gate_info[0] == "Z-rotation":
             qiskit_circ.rz(gate_info[2], gate_info[1])
         # C3ゲート
         elif gate_info[0] == "T" :
