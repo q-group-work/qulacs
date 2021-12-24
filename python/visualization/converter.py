@@ -19,9 +19,9 @@ def convert(gate_list, nqubit):
         elif gate_info[0] == "H":
             qiskit_circ.h(gate_info[1])
         elif gate_info[0] == "CNOT":
-            qiskit_circ.cx(gate_info[1])
+            qiskit_circ.cx(gate_info[1][0], gate_info[1][1])
         elif gate_info[0] == "CZ":
-            qiskit_circ.cz(gate_info[1])
+            qiskit_circ.cz(gate_info[1][0], gate_info[1][1])
         elif gate_info[0] == "S":
             qiskit_circ.s(gate_info[1])
         elif gate_info[0] == "Sdag":
@@ -45,7 +45,7 @@ def convert(gate_list, nqubit):
             qiskit_circ.u2(gate_info[2], gate_info[1])
         # Swapゲート
         elif gate_info[0] == "SWAP" :
-            qiskit_circ.u2(gate_info[2], gate_info[1])
+            qiskit_circ.swap(gate_info[1][0], gate_info[1][1])
         
         else:
             print("Warning: "+ gate_info[0] + " is unsupported yet.")
