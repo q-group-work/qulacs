@@ -36,5 +36,5 @@ def get_qiskit_circuit(circuit):
             Quantum circuit of the object to be drawn
     """
     gate_list, nqubit = get_intermediate_list(circuit)
-    circuit_qiskit = converter.converter(gate_list, nqubit)
+    circuit_qiskit = converter.convert(gate_list, nqubit)
     return circuit_qiskit
