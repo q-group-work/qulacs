@@ -18,9 +18,12 @@ def get_intermediate_list(circuit):
     gate_list = []
     for i in range(circuit.get_gate_count()):
         gate = circuit.get_gate(i)
-        gate_list.append([gate.get_name(), gate.get_target_index_list()[0]])
-        # TODO: 多キュービット対応
-        # print(gate.get_control_index_list())
+        if len(gate.get_control_index_list())==0:
+            gate_list.append([gate.get_name(), gate.get_target_index_list()[0]])
+        elif len(gate.get_control_index_list())==1:
+            gate_list.append([gate.get_name(), [gate.get_target_index_list()[0], gate.get_control_index_list()[0]]])
+        else:
+            gate_list.append([gate.get_name(), gate.get_target_index_list()[0]])
     nqubit = circuit.get_qubit_count()
     return gate_list, nqubit
 
