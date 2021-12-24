@@ -8,14 +8,6 @@ for ind in range(1, len(sys.argv)):
     sys.path.append(sys.argv[ind])
 sys.argv = sys.argv[:1]
 
-class TestTashizan(unittest.TestCase):
-    def test_tashizan(self):
-        value1 = 2
-        value2 = 6
-        expected = 8
-        actual = tashizan(value1, value2)
-        self.assertEqual(expected, actual)
-
 class TestQuantumState(unittest.TestCase):
     def setUp(self):
         self.n = 4
@@ -43,10 +35,6 @@ class TestQuantumState(unittest.TestCase):
         vector_ans = np.zeros(self.dim)
         vector_ans[pos] = 1.
         self.assertTrue(((vector - vector_ans) < 1e-10).all(), msg="check set_computational_basis")
-
-    def test_yoshioka(self):
-        hoge = self.state.get_vector()
-        self.assertEqual(len(hoge), self.dim, msg="check vector size")
 
 class TestQuantumCircuit(unittest.TestCase):
     def setUp(self):
