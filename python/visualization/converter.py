@@ -3,7 +3,7 @@ import qiskit
 
 # gate_info = [ゲート Type, qubit_count]とcircitのqubit数をもらうと
 # qiskitゲートを生成
-def converter(gate_list, nqubit):
+def convert(gate_list, nqubit):
     qiskit_circ = qiskit.QuantumCircuit(nqubit)
     for gate_info in gate_list:
     # Pauliゲート
