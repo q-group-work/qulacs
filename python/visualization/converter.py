@@ -9,12 +9,8 @@ def convert(gate_list, nqubit):
     # Pauliゲート
         if gate_info[0] == "X":
             qiskit_circ.x(gate_info[1])
-        # elif gate_info[0] == sqrtX:
-        #     qiskit_circ.xsqrt(gate_info[1])
         elif gate_info[0] == "Y":
             qiskit_circ.y(gate_info[1])
-        # elif gate_info[0] == sqrtY:
-        #     qiskit_circ.ysqrt(gate_info[1])
         elif gate_info[0] == "Z":
             qiskit_circ.z(gate_info[1])
         elif gate_info[0] == "I":
@@ -31,11 +27,11 @@ def convert(gate_list, nqubit):
         elif gate_info[0] == "Sdag":
             qiskit_circ.sdg(gate_info[1])
         # 回転ゲート
-        elif gate_info[0] == "X-rotation":
+        elif gate_info[0] == "RX":
             qiskit_circ.rx(gate_info[2], gate_info[1])
-        elif gate_info[0] == "Y-rotation":
+        elif gate_info[0] == "RY":
             qiskit_circ.ry(gate_info[2], gate_info[1])
-        elif gate_info[0] == "Z-rotation":
+        elif gate_info[0] == "RZ":
             qiskit_circ.rz(gate_info[2], gate_info[1])
         # C3ゲート
         elif gate_info[0] == "T" :
@@ -47,7 +43,11 @@ def convert(gate_list, nqubit):
             qiskit_circ.u(gate_info[2], gate_info[1])
         elif gate_info[0] == "U2" :
             qiskit_circ.u2(gate_info[2], gate_info[1])
-        # 2-qubitゲート
+        # Swapゲート
+        elif gate_info[0] == "SWAP" :
+            qiskit_circ.u2(gate_info[2], gate_info[1])
+        
         else:
             print("Warning: "+ gate_info[0] + " is unsupported yet.")
             print("Please represent the circuit by using supported gates, if you use .draw()")
+    return qiskit_circ
