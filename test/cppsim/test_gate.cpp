@@ -1217,3 +1217,34 @@ TEST(GateTest, DuplicateIndex) {
 		ASSERT_EQ(NULL, gate2);
 	}
 }
+
+TEST(GateTest, GetProperty) {
+	{
+		auto x = gate::X(0);
+		auto target = x->get_target_index_list();
+		ASSERT_EQ(x->get_name(), "X");
+		ASSERT_EQ(target[0], 0);
+	}
+	{
+		auto y = gate::Y(1);
+		auto target = y->get_target_index_list();
+		ASSERT_EQ(y->get_name(), "Y");
+		ASSERT_EQ(target[0], 1);
+	}
+	{
+		auto cnot = gate::CNOT(1, 2);
+		auto control = cnot->get_control_index_list();
+		auto target = cnot->get_target_index_list();
+		ASSERT_EQ(cnot->get_name(), "CNOT");
+		ASSERT_EQ(control[0], 1);
+		ASSERT_EQ(target[0], 2);
+	}
+	{
+		auto rx = gate::RX(2, 0.1);
+		auto target = rx->get_target_index_list();
+		auto angle = rx->get_angle();
+		ASSERT_EQ(rx->get_name(), "X-rotation");
+		ASSERT_EQ(target[0], 2);
+		ASSERT_EQ(angle, 0.1);
+	}
+}
