@@ -3,7 +3,6 @@ import qulacs
 import unittest
 import numpy as np
 import sys
-from tashizan import tashizan
 for ind in range(1, len(sys.argv)):
     sys.path.append(sys.argv[ind])
 sys.argv = sys.argv[:1]
