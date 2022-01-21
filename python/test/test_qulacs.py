@@ -60,6 +60,7 @@ class TestQuantumCircuit(unittest.TestCase):
         vector_ans[3] = np.sqrt(0.5)
         self.assertTrue(((vector - vector_ans) < 1e-10).all(), msg="check make bell state")
 
+    def test_get_angle(self):
 
 class TestPointerHandling(unittest.TestCase):
     def setUp(self):
