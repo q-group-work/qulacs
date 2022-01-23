@@ -46,6 +46,11 @@ def convert(gate_list, nqubit):
         # Swapゲート
         elif gate_info[0] == "SWAP" :
             qiskit_circ.swap(gate_info[1][0], gate_info[1][1])
+        # Sqrtゲート
+        elif gate_info[0] == "sqrtX" :
+            qiskit_circ.sx(gate_info[1])
+        elif gate_info[0] == "sqrtXdag" :
+            qiskit_circ.sxdg(gate_info[1])
         
         else:
             print("Warning: "+ gate_info[0] + " is unsupported yet.")
