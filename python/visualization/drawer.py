@@ -1,4 +1,4 @@
-import converter
+from naniwa import converter
 
 def get_intermediate_list(circuit):
     """Get gate list and the number of qubit from qulacs circuit.
