@@ -8,7 +8,15 @@ for ind in range(1, len(sys.argv)):
     sys.path.append(sys.argv[ind])
 sys.argv = sys.argv[:1]
 
+class TestGetAngle(unittest.TestCase):
+    def setUp(self):
+        self.n = 4
+        self.dim = 2**self.n
+        self.angle = qulacs.QuantumGateBase(self.n)
 
+    def tearDown(self):
+        del self.angle
+    
 class TestQuantumState(unittest.TestCase):
     def setUp(self):
         self.n = 4
@@ -60,7 +68,6 @@ class TestQuantumCircuit(unittest.TestCase):
         vector_ans[3] = np.sqrt(0.5)
         self.assertTrue(((vector - vector_ans) < 1e-10).all(), msg="check make bell state")
 
-    def test_get_angle(self):
 
 class TestPointerHandling(unittest.TestCase):
     def setUp(self):
