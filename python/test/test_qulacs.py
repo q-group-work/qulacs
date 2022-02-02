@@ -16,6 +16,9 @@ class TestGetAngle(unittest.TestCase):
 
     def tearDown(self):
         del self.angle
+
+    def test_get_angle(self):
+        angle = self.get_angle()
     
 class TestQuantumState(unittest.TestCase):
     def setUp(self):
