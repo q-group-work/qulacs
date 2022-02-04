@@ -18,6 +18,9 @@ class TestQuantumState(unittest.TestCase):
     def tearDown(self):
         del self.state
 
+    def test_get_angle(self):
+        angle = self.state.get_angle()
+
     def test_state_dim(self):
         vector = self.state.get_vector()
         self.assertEqual(len(vector), self.dim, msg="check vector size")
