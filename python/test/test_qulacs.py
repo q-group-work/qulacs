@@ -18,9 +18,6 @@ class TestQuantumState(unittest.TestCase):
     def tearDown(self):
         del self.state
 
-    def test_get_angle(self):
-        angle = self.state.get_angle()
-
     def test_state_dim(self):
         vector = self.state.get_vector()
         self.assertEqual(len(vector), self.dim, msg="check vector size")
@@ -63,6 +60,10 @@ class TestQuantumCircuit(unittest.TestCase):
         vector_ans[3] = np.sqrt(0.5)
         self.assertTrue(((vector - vector_ans) < 1e-10).all(), msg="check make bell state")
 
+    def test_get_angle(self):
+        for i in range(self.circuit.get_gate_count()):
+            gate = self.circuit.get_gate(i)
+            angle = self.gate.get_angle()
 
 class TestPointerHandling(unittest.TestCase):
     def setUp(self):
