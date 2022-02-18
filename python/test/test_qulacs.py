@@ -8,6 +8,17 @@ for ind in range(1, len(sys.argv)):
     sys.path.append(sys.argv[ind])
 sys.argv = sys.argv[:1]
 
+class check_angle:
+    def __init__(self,n,circuit):
+        self.n=n
+        self.circuit = qulacs.QuantumCircuit(self.n)
+
+    def method_angle(self):
+        for i in range(self.circuit.get_gate_count()):
+            gate = self.circuit.get_gate(i)
+            angle = self.gate.get_angle()
+            return angle
+print(method_angle())
 
 class TestQuantumState(unittest.TestCase):
     def setUp(self):
