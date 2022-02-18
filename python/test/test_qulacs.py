@@ -17,7 +17,7 @@ class check_angle:
         gate = self.circuit.get_gate(self.i)
         angle = gate.get_angle(self.i)
         return angle
-abc=check_angle(5,1)
+abc=check_angle(5,2) # qubit数5, 2番目のqubitの何が帰ってくる？
 print(abc.method_angle())
 
 class TestQuantumState(unittest.TestCase):
