@@ -63,7 +63,7 @@ class TestQuantumCircuit(unittest.TestCase):
         self.circuit.add_RX_gate(0, 0.2)
         self.state.set_zero_state()
         self.circuit.update_quantum_state(self.state)
-        gate = self.circuit.get_angle(0)
+        gate = self.circuit.get_gate(0)
         angle = gate.get_angle()
         self.assertEqual(angle, 0.2)
         
