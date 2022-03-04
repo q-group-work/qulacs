@@ -8,6 +8,26 @@ for ind in range(1, len(sys.argv)):
     sys.path.append(sys.argv[ind])
 sys.argv = sys.argv[:1]
 
+#class check_angle:
+#    def __init__(self,n,i):
+#        self.n = n
+#        self.i = i
+#    def method_angle(self):
+#        from qulacs import ParametricQuantumCircuit
+#        circuit = qulacs.QuantumCircuit(self.n)
+
+
+#class TestGetAngle(unittest.TestCase)
+#def test_get_angle(self):
+#        self.circuit.add_H_gate(0)
+#        self.state.set_zero_state()
+#        self.circuit.update_quantum_state(self.state)
+#        gate = self.circuit.get_gate(0)
+#        angle = self.circuit.get_angle(0) # error: AttributeError: 'qulacs.QuantumCircuit' object h#as no attribute 'get_angle'
+##        angle = self.state.get_angle(0) # error: AttributeError: 'qulacs.QuantumState' object has no attribute 'get_angle'
+##        angle = gate.get_angle(0) # error: AttributeError: 'qulacs.QuantumGateBase' object has no attribute 'get_angle'
+
+
 class TestQuantumState(unittest.TestCase):
     def setUp(self):
         self.n = 4
@@ -60,14 +80,13 @@ class TestQuantumCircuit(unittest.TestCase):
         self.assertTrue(((vector - vector_ans) < 1e-10).all(), msg="check make bell state")
 
     def test_get_angle(self):
-        self.circuit.add_H_gate(0)
+        self.circuit.add_RX_gate(0, 0.2)
         self.state.set_zero_state()
         self.circuit.update_quantum_state(self.state)
-        gate = self.circuit.get_gate(0)
-        angle = self.circuit.get_angle(0) # error: AttributeError: 'qulacs.QuantumCircuit' object has no attribute 'get_angle'
-#        angle = self.state.get_angle(0) # error: AttributeError: 'qulacs.QuantumState' object has no attribute 'get_angle'
-#        angle = gate.get_angle(0) # error: AttributeError: 'qulacs.QuantumGateBase' object has no attribute 'get_angle'
-
+        gate = self.circuit.get_angle(0)
+        angle = gate.get_angle()
+        self.assertEqual(angle, 0.2)
+        
 class TestPointerHandling(unittest.TestCase):
     def setUp(self):
         pass
