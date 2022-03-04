@@ -8,18 +8,6 @@ for ind in range(1, len(sys.argv)):
     sys.path.append(sys.argv[ind])
 sys.argv = sys.argv[:1]
 
-class check_angle:
-    def __init__(self,n,i):
-        self.n=n
-        self.i=i
-    def method_angle(self):
-        circuit = qulacs.QuantumCircuit(self.n)
-        gate = self.circuit.get_gate(self.i)
-        angle = gate.get_angle(self.i)
-        return angle
-abc=check_angle(5,2) # qubit数5, 2番目のqubitの何が帰ってくる？
-print(abc.method_angle())
-
 class TestQuantumState(unittest.TestCase):
     def setUp(self):
         self.n = 4
@@ -72,9 +60,13 @@ class TestQuantumCircuit(unittest.TestCase):
         self.assertTrue(((vector - vector_ans) < 1e-10).all(), msg="check make bell state")
 
     def test_get_angle(self):
-        for i in range(self.circuit.get_gate_count()):
-            gate = self.circuit.get_gate(i)
-            angle = self.gate.get_angle()
+        self.circuit.add_H_gate(0)
+        self.state.set_zero_state()
+        self.circuit.update_quantum_state(self.state)
+        gate = self.circuit.get_gate(0)
+        angle = self.circuit.get_angle(0) # error: AttributeError: 'qulacs.QuantumCircuit' object has no attribute 'get_angle'
+#        angle = self.state.get_angle(0) # error: AttributeError: 'qulacs.QuantumState' object has no attribute 'get_angle'
+#        angle = gate.get_angle(0) # error: AttributeError: 'qulacs.QuantumGateBase' object has no attribute 'get_angle'
 
 class TestPointerHandling(unittest.TestCase):
     def setUp(self):
